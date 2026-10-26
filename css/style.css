@@ -240,6 +240,127 @@ p {
 
 
 /* =========================
+   FEATURED WORK CAROUSEL
+========================= */
+
+.featured-work {
+    background: var(--light);
+}
+
+.featured-work .section-heading {
+    margin-bottom: 30px;
+}
+
+.carousel {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.carousel-slides {
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--dark);
+}
+
+.carousel-slide {
+    position: relative;
+    display: none;
+    min-height: 260px;
+    height: clamp(260px, 36vw, 380px);
+    color: var(--white);
+}
+
+.carousel-slide.is-active {
+    display: block;
+}
+
+.carousel-slide::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgb(15 23 42 / 85%), rgb(15 23 42 / 15%));
+    content: "";
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    position: absolute;
+    z-index: 1;
+    left: clamp(22px, 5vw, 55px);
+    bottom: clamp(22px, 5vw, 50px);
+    max-width: 560px;
+}
+
+.carousel-caption .eyebrow {
+    margin-bottom: 8px;
+    color: #fbbf24;
+}
+
+.carousel-caption h3 {
+    margin-bottom: 10px;
+    color: var(--white);
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+}
+
+.carousel-caption p:last-child {
+    margin-bottom: 0;
+    color: #e2e8f0;
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 4px 0;
+}
+
+.carousel-indicators,
+.carousel-arrows {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #cbd5e1;
+    cursor: pointer;
+}
+
+.carousel-indicator[aria-current="true"] {
+    background: var(--primary-dark);
+}
+
+.carousel-arrow {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.carousel-indicator:focus-visible,
+.carousel-arrow:focus-visible {
+    outline: 2px solid var(--primary-dark);
+    outline-offset: 3px;
+}
+
+
+/* =========================
    SECTION HEADINGS
 ========================= */
 
@@ -533,6 +654,10 @@ p {
 
     .hero-buttons .btn {
         text-align: center;
+    }
+
+    .carousel-slide {
+        min-height: 280px;
     }
 
     .service-grid {
