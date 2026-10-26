@@ -197,11 +197,28 @@ if (quoteForm && formFeedback) {
             )
         })
             .then(async (response) => {
-                const result = await response.json();
+                const responseText = await response.text();
+                let result = {};
+
+                if (responseText) {
+                    try {
+                        result = JSON.parse(responseText);
+                    } catch {
+                        throw new Error(
+                            `The server returned an unexpected response (HTTP ${response.status}). Make sure the form is being served by the Node.js backend.`
+                        );
+                    }
+                }
 
                 if (!response.ok) {
                     throw new Error(
                         result.error || "Your request could not be sent."
+                    );
+                }
+
+                if (!responseText) {
+                    throw new Error(
+                        "The server returned an empty response. Make sure the form is being served by the Node.js backend."
                     );
                 }
 
