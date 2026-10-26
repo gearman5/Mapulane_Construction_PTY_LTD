@@ -178,48 +178,48 @@ if (quoteForm && formFeedback) {
             return;
         }
 
-        const formData = new FormData(quoteForm);
+        const submitButton = document.getElementById("quote-submit");
+        const submitLabel = submitButton?.textContent;
 
-        const customerName = formData.get("name").trim();
-        const customerEmail = formData.get("email").trim();
-        const customerPhone = formData.get("phone").trim();
-        const selectedService = formData.get("service");
-        const projectMessage = formData.get("message").trim();
-
-        if (
-            !customerName ||
-            !customerEmail ||
-            !customerPhone ||
-            !selectedService ||
-            !projectMessage
-        ) {
-            formFeedback.textContent =
-                "Please complete all the required fields.";
-
-            formFeedback.classList.add("error");
-            return;
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
         }
 
-        /*
-         * FRONT-END DEMONSTRATION ONLY
-         *
-         * The form currently does not send information to a server.
-         *
-         * Connect this section to a backend API, email service,
-         * or form-processing service before publishing the website.
-         */
+        fetch(quoteForm.action, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(
+                Object.fromEntries(new FormData(quoteForm).entries())
+            )
+        })
+            .then(async (response) => {
+                const result = await response.json();
 
-        formFeedback.textContent =
-            "The form is working, but it is not connected to a submission service yet.";
+                if (!response.ok) {
+                    throw new Error(
+                        result.error || "Your request could not be sent."
+                    );
+                }
 
-        formFeedback.classList.add("success");
-
-        console.log("Quotation request:", {
-            name: customerName,
-            email: customerEmail,
-            phone: customerPhone,
-            service: selectedService,
-            message: projectMessage
-        });
+                formFeedback.textContent =
+                    "Thank you. Your quote request has been sent to our WhatsApp Business team.";
+                formFeedback.classList.add("success");
+                quoteForm.reset();
+            })
+            .catch((error) => {
+                formFeedback.textContent = error.message ||
+                    "We could not send your request. Please try again or contact us by phone.";
+                formFeedback.classList.add("error");
+            })
+            .finally(() => {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = submitLabel;
+                }
+            });
     });
 }

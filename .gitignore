@@ -8,3 +8,9 @@ waf3-*-*/
 # Lockfile
 .lock-waf_*_build
 .vscode-*-/
+
+# Node.js dependencies and local secrets
+node_modules/
+.env
+.env.*
+!.env.example

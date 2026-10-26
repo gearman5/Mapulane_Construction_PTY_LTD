@@ -166,6 +166,27 @@ p {
     text-transform: uppercase;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--dark);
+    font-size: 1.25rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.logo img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    display: block;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -203,9 +224,9 @@ p {
 
     background:
         linear-gradient(90deg,
-            rgb(15 23 42 / 92%),
+            rgb(15 23 42 / 91%),
             rgb(15 23 42 / 60%)),
-        url("../images/solar.jpg") center / cover no-repeat;
+        url("../images/hero-image.jpg") center / cover no-repeat;
 
     background-color: var(--dark);
 }
