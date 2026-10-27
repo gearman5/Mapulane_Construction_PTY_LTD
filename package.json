@@ -2,7 +2,7 @@
   "name": "mapulane-construction-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Mapulane Construction website and WhatsApp quote notification backend",
+  "description": "Mapulane Construction website with WhatsApp quote handoff",
   "scripts": {
     "start": "node server.js"
   },
@@ -10,8 +10,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "dotenv": "^16.6.1",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.1.0"
+    "express": "^5.1.0"
   }
 }

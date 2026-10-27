@@ -178,65 +178,39 @@ if (quoteForm && formFeedback) {
             return;
         }
 
-        const submitButton = document.getElementById("quote-submit");
-        const submitLabel = submitButton?.textContent;
-
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
+        const whatsappNumber = quoteForm.dataset.whatsappNumber;
+        if (!/^\d{8,15}$/.test(whatsappNumber || "")) {
+            formFeedback.textContent =
+                "WhatsApp quote delivery is not configured. Please contact us by phone.";
+            formFeedback.classList.add("error");
+            return;
         }
 
-        fetch(quoteForm.action, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(
-                Object.fromEntries(new FormData(quoteForm).entries())
-            )
-        })
-            .then(async (response) => {
-                const responseText = await response.text();
-                let result = {};
+        const quote = Object.fromEntries(new FormData(quoteForm).entries());
+        const message = [
+            "Hello Mapulane Construction, I would like to request a quote.",
+            "",
+            `Name: ${quote.name}`,
+            `Phone: ${quote.phone}`,
+            `Email: ${quote.email}`,
+            `Service: ${quote.service}`,
+            `Project details: ${quote.message}`
+        ].join("\n");
+        const whatsappUrl =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        const whatsappLink = document.createElement("a");
 
-                if (responseText) {
-                    try {
-                        result = JSON.parse(responseText);
-                    } catch {
-                        throw new Error(
-                            `The server returned an unexpected response (HTTP ${response.status}). Make sure the form is being served by the Node.js backend.`
-                        );
-                    }
-                }
+        whatsappLink.href = whatsappUrl;
+        whatsappLink.target = "_blank";
+        whatsappLink.rel = "noopener noreferrer";
+        whatsappLink.textContent = "Open WhatsApp to review and send your quote";
 
-                if (!response.ok) {
-                    throw new Error(
-                        result.error || "Your request could not be sent."
-                    );
-                }
-
-                if (!responseText) {
-                    throw new Error(
-                        "The server returned an empty response. Make sure the form is being served by the Node.js backend."
-                    );
-                }
-
-                formFeedback.textContent =
-                    "Thank you. Your quote request has been sent to our WhatsApp Business team.";
-                formFeedback.classList.add("success");
-                quoteForm.reset();
-            })
-            .catch((error) => {
-                formFeedback.textContent = error.message ||
-                    "We could not send your request. Please try again or contact us by phone.";
-                formFeedback.classList.add("error");
-            })
-            .finally(() => {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = submitLabel;
-                }
-            });
+        formFeedback.append(
+            document.createTextNode(
+                "Your quote is ready. WhatsApp will not send it until you review the message and tap Send. "
+            ),
+            whatsappLink
+        );
+        formFeedback.classList.add("success");
     });
 }
