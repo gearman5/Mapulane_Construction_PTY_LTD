@@ -12,6 +12,57 @@
     --text: #475569;
     --border: #e2e8f0;
     --success: #15803d;
+    --page-background: #ffffff;
+    --header-background: #ffffff;
+    --surface-background: #ffffff;
+    --surface-alt: #f8fafc;
+    --muted-text: #475569;
+}
+
+body[data-theme="dark"] {
+    --primary: #fbbf24;
+    --primary-dark: #f59e0b;
+    --dark: #f8fafc;
+    --dark-light: #dbeafe;
+    --light: #0f172a;
+    --white: #0f172a;
+    --text: #dfe8f4;
+    --border: #334155;
+    --success: #4ade80;
+    --page-background: #020817;
+    --header-background: #0f172a;
+    --surface-background: #111827;
+    --surface-alt: #0b1220;
+    --muted-text: #cbd5e1;
+}
+
+body[data-theme="dark"] .nav-links,
+body[data-theme="dark"] .service-card,
+body[data-theme="dark"] .service-gallery-carousel,
+body[data-theme="dark"] .service-gallery-button,
+body[data-theme="dark"] .about-highlight,
+body[data-theme="dark"] .contact-details,
+body[data-theme="dark"] .form-group input,
+body[data-theme="dark"] .form-group select,
+body[data-theme="dark"] .form-group textarea,
+body[data-theme="dark"] .theme-toggle {
+    background: var(--surface-background);
+    color: var(--dark);
+}
+
+body[data-theme="dark"] .nav-links a,
+body[data-theme="dark"] .nav-links {
+    color: var(--dark);
+}
+
+body[data-theme="dark"] .service-card p,
+body[data-theme="dark"] .about-highlight p,
+body[data-theme="dark"] .contact-details p,
+body[data-theme="dark"] .form-group label,
+body[data-theme="dark"] .form-group input,
+body[data-theme="dark"] .form-group select,
+body[data-theme="dark"] .form-group textarea {
+    color: var(--text);
 }
 
 * {
@@ -29,7 +80,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     color: var(--text);
-    background: var(--white);
+    background: var(--page-background);
 }
 
 a {
@@ -139,7 +190,7 @@ p {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--white);
+    background: var(--header-background);
     box-shadow: 0 3px 15px rgb(0 0 0 / 8%);
 }
 
@@ -148,7 +199,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
+    gap: 15px;
 }
 
 .logo {
@@ -211,6 +262,26 @@ p {
     cursor: pointer;
 }
 
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-background);
+    color: var(--dark);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
 
 /* =========================
    HERO SECTION
@@ -226,7 +297,7 @@ p {
         linear-gradient(90deg,
             rgb(15 23 42 / 91%),
             rgb(15 23 42 / 60%)),
-        url("../images/hero-image.jpg") center / cover no-repeat;
+        url("../images/construction-room-rough-in.jpeg") center / cover no-repeat;
 
     background-color: var(--dark);
 }
@@ -412,7 +483,7 @@ p {
 
 .service-card {
     padding: 32px;
-    background: var(--white);
+    background: var(--surface-background);
     border: 1px solid var(--border);
     border-radius: 10px;
     transition: 0.25s ease;
@@ -437,6 +508,92 @@ p {
 
 .service-card p {
     margin-bottom: 20px;
+}
+
+.service-card-featured {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card-featured .service-link {
+    margin-top: auto;
+}
+
+.service-gallery-carousel {
+    margin: 0 0 22px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    background: var(--surface-alt);
+}
+
+.service-gallery-track {
+    position: relative;
+}
+
+.service-gallery-slide {
+    display: none;
+    height: 250px;
+}
+
+.service-gallery-slide.is-active {
+    display: block;
+}
+
+.service-gallery-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--light);
+}
+
+.service-gallery-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 10px 12px;
+}
+
+.service-gallery-button {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface-background);
+    color: var(--dark);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.service-gallery-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.service-gallery-dot {
+    width: 9px;
+    height: 9px;
+    border: 0;
+    border-radius: 50%;
+    background: #cbd5e1;
+    cursor: pointer;
+}
+
+.service-gallery-dot.is-active {
+    background: var(--primary-dark);
+}
+
+.service-gallery-button:focus-visible,
+.service-gallery-dot:focus-visible {
+    outline: 2px solid var(--primary-dark);
+    outline-offset: 2px;
 }
 
 .service-link {
@@ -468,7 +625,7 @@ p {
     padding: 40px;
     border-left: 5px solid var(--primary);
     border-radius: 6px;
-    background: var(--light);
+    background: var(--surface-alt);
 }
 
 .about-highlight p {
@@ -518,7 +675,7 @@ p {
 .contact-details {
     padding: 28px;
     border-radius: 8px;
-    background: var(--light);
+    background: var(--surface-alt);
 }
 
 .contact-details a {

@@ -3,129 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Explore Mapulane Construction's electrical, plumbing, solar, air conditioning and general construction services."
+    >
     <link rel="stylesheet" href="css/style.css">
-    <title>Services</title>
+    <title>Our Services | Mapulane Construction</title>
 </head>
 <body>
-    <!-- Services Section -->
+    <header class="header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a href="index.html" class="logo">
+                <img src="images/logo.jpg" alt="Mapulane Construction Logo">
+                <span class="logo-text">Mapulane <span>Construction</span></span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="nav-links"
+                type="button"
+            >
+                ☰
+            </button>
+
+            <button
+                class="theme-toggle"
+                type="button"
+                aria-label="Toggle dark mode"
+                aria-pressed="false"
+            >
+                🌙
+            </button>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" aria-current="page">Our Services</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <a href="contact.html" class="btn nav-btn">
+                Request a Quote
+            </a>
+        </nav>
+    </header>
+
+    <main>
         <section class="section services" id="services">
             <div class="container">
-
                 <div class="section-heading">
                     <p class="eyebrow">WHAT WE DO</p>
-                    <h2>Our Professional Services</h2>
-
+                    <h1>Our Professional Services</h1>
                     <p>
-                        Quality workmanship and dependable service
-                        for your home or business.
+                        Explore examples of our work across electrical,
+                        plumbing, solar, air conditioning and general
+                        construction projects.
                     </p>
                 </div>
 
                 <div class="service-grid">
-
-                    <!-- Electrical Services -->
-                    <article class="service-card">
-
-                        <div class="service-icon" aria-hidden="true">
-                            ⚡
-                        </div>
-
-                        <h3>Electrical Installation</h3>
-
+                    <article class="service-card service-card-featured">
+                        <div class="service-icon" aria-hidden="true">⚡</div>
+                        <h2>Electrical Installation</h2>
                         <p>
-                            Electrical installations, lighting,
-                            power outlets, fault finding and
-                            electrical maintenance.
+                            Electrical installations, lighting, distribution
+                            boards, fault finding and maintenance.
                         </p>
-
+                        <div class="service-gallery-carousel" data-service-gallery aria-label="Electrical project photos">
+                            <div class="service-gallery-track">
+                                <figure class="service-gallery-slide is-active" aria-hidden="false"><img src="images/electrical-rough-in-wall.jpeg" alt="Electrical conduit and outlet box fitted on a brick wall" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/electrical-ceiling-technician.jpeg" alt="Technician working overhead with a power tool during an interior installation" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/electrical-distribution-box.jpg" alt="Installed electrical distribution board" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/electrial-tubing.jpeg" alt="Electrical tubing installed through a building" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/electrical-pvc-tubing.jpeg" alt="PVC tubing used for an electrical installation" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/electrical-tubing-single.jpeg" alt="Single electrical tube fitted on a wall" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/pre-installation-downlights.jpeg" alt="Ceiling prepared for downlight installation" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/downlights.jpeg" alt="Installed ceiling downlights" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/carousel-2.jpg" alt="Range of lighting fixtures on display" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/carousel-3.jpg" alt="Electrician working on a distribution board" loading="lazy"></figure>
+                            </div>
+                            <div class="service-gallery-controls">
+                                <button class="service-gallery-button" type="button" data-service-prev aria-label="Previous electrical project photo">&#8592;</button>
+                                <div class="service-gallery-dots" aria-label="Choose a visual">
+                                    <button class="service-gallery-dot is-active" type="button" data-service-dot="0" aria-label="Show electrical project 1" aria-current="true"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="1" aria-label="Show electrical project 2" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="2" aria-label="Show electrical project 3" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="3" aria-label="Show electrical project 4" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="4" aria-label="Show electrical project 5" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="5" aria-label="Show electrical project 6" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="6" aria-label="Show electrical project 7" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="7" aria-label="Show electrical project 8" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="8" aria-label="Show electrical project 9" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="9" aria-label="Show electrical project 10" aria-current="false"></button>
+                                </div>
+                                <button class="service-gallery-button" type="button" data-service-next aria-label="Next electrical project photo">&#8594;</button>
+                            </div>
+                        </div>
                         <a
-                            href="#contact"
+                            href="contact.html?service=Electrical%20Installation#contact"
                             class="service-link"
                             data-service="Electrical Installation"
                         >
                             Request Electrical Services →
                         </a>
-
                     </article>
 
-                    <!-- Plumbing Services -->
-                    <article class="service-card">
-
-                        <div class="service-icon" aria-hidden="true">
-                            🔧
-                        </div>
-
-                        <h3>Plumbing Installation</h3>
-
+                    <article class="service-card service-card-featured">
+                        <div class="service-icon" aria-hidden="true">🔧</div>
+                        <h2>Plumbing Installation</h2>
                         <p>
                             Water pipe installations, bathroom fittings,
-                            drainage solutions, leak repairs and
-                            plumbing maintenance.
+                            drainage solutions, leak repairs and maintenance.
                         </p>
-
+                        <div class="service-gallery-carousel" data-service-gallery aria-label="Plumbing project photos">
+                            <div class="service-gallery-track">
+                                <figure class="service-gallery-slide is-active" aria-hidden="false"><img src="images/basin-and-toilet.jpeg" alt="Plumbing pipework installed on a masonry wall" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/plumbing.jpeg" alt="Plumbing installation project" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/shower-drainange-system.jpeg" alt="Shower drainage system fitted in a floor" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/shower-rough-system.jpeg" alt="Shower plumbing rough-in with floor drainage" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/work-2.jpg" alt="Plumber fitting a bathroom basin" loading="lazy"></figure>
+                            </div>
+                            <div class="service-gallery-controls">
+                                <button class="service-gallery-button" type="button" data-service-prev aria-label="Previous plumbing project photo">&#8592;</button>
+                                <div class="service-gallery-dots">
+                                    <button class="service-gallery-dot is-active" type="button" data-service-dot="0" aria-label="Show plumbing project 1" aria-current="true"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="1" aria-label="Show plumbing project 2" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="2" aria-label="Show plumbing project 3" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="3" aria-label="Show plumbing project 4" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="4" aria-label="Show plumbing project 5" aria-current="false"></button>
+                                </div>
+                                <button class="service-gallery-button" type="button" data-service-next aria-label="Next plumbing project photo">&#8594;</button>
+                            </div>
+                        </div>
                         <a
-                            href="#contact"
+                            href="contact.html?service=Plumbing%20Installation#contact"
                             class="service-link"
                             data-service="Plumbing Installation"
                         >
                             Request Plumbing Services →
                         </a>
-
                     </article>
 
-                    <!-- Solar Services -->
-                    <article class="service-card">
-
-                        <div class="service-icon" aria-hidden="true">
-                            ☀️
-                        </div>
-
-                        <h3>Solar Panel Fitting</h3>
-
+                    <article class="service-card service-card-featured">
+                        <div class="service-icon" aria-hidden="true">☀️</div>
+                        <h2>Solar Panel Fitting</h2>
                         <p>
                             Solar panel installations, inverter systems,
-                            battery solutions and solar energy
-                            system maintenance.
+                            battery storage and solar system maintenance.
                         </p>
-
+                        <div class="service-gallery-carousel" data-service-gallery aria-label="Solar installation photos">
+                            <div class="service-gallery-track">
+                                <figure class="service-gallery-slide is-active" aria-hidden="false"><img src="images/solar-panel.jpeg" alt="Solar panels installed on a residential rooftop" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/solar-inverter-installation.jpeg" alt="Solar inverter installation" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/solar-inverter-system.jpeg" alt="Installed solar inverter and battery system" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/solarpanel-rooftop.jpeg" alt="Solar panel array on a tiled rooftop" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/work-1.jpg" alt="Solar panels fitted on a residential roof" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/work-4.jpg" alt="Installed home solar inverter and battery system" loading="lazy"></figure>
+                            </div>
+                            <div class="service-gallery-controls">
+                                <button class="service-gallery-button" type="button" data-service-prev aria-label="Previous solar project photo">&#8592;</button>
+                                <div class="service-gallery-dots">
+                                    <button class="service-gallery-dot is-active" type="button" data-service-dot="0" aria-label="Show solar project 1" aria-current="true"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="1" aria-label="Show solar project 2" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="2" aria-label="Show solar project 3" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="3" aria-label="Show solar project 4" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="4" aria-label="Show solar project 5" aria-current="false"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="5" aria-label="Show solar project 6" aria-current="false"></button>
+                                </div>
+                                <button class="service-gallery-button" type="button" data-service-next aria-label="Next solar project photo">&#8594;</button>
+                            </div>
+                        </div>
                         <a
-                            href="#contact"
+                            href="contact.html?service=Solar%20Panel%20Fitting#contact"
                             class="service-link"
                             data-service="Solar Panel Fitting"
                         >
                             Request Solar Services →
                         </a>
-
                     </article>
 
-                    <!-- General Construction -->
-                    <article class="service-card">
-
-                        <div class="service-icon" aria-hidden="true">
-                            🏗️
-                        </div>
-
-                        <h3>General Construction</h3>
-
+                    <article class="service-card service-card-featured">
+                        <div class="service-icon" aria-hidden="true">🏗️</div>
+                        <h2>General Construction</h2>
                         <p>
-                            Building maintenance, renovations,
-                            property improvements and general
-                            construction projects.
+                            Building work, renovations, interior finishing
+                            and property improvements.
                         </p>
-
+                        <div class="service-gallery-carousel" data-service-gallery aria-label="Construction project photos">
+                            <div class="service-gallery-track">
+                                <figure class="service-gallery-slide is-active" aria-hidden="false"><img src="images/construction-room-rough-in.jpeg" alt="Unfinished masonry room with roof structure and service routes in progress" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/work.jpg" alt="Construction and building services work on site" loading="lazy"></figure>
+                            </div>
+                            <div class="service-gallery-controls">
+                                <button class="service-gallery-button" type="button" data-service-prev aria-label="Previous construction project photo">&#8592;</button>
+                                <div class="service-gallery-dots">
+                                    <button class="service-gallery-dot is-active" type="button" data-service-dot="0" aria-label="Show construction project 1" aria-current="true"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="1" aria-label="Show construction project 2" aria-current="false"></button>
+                                </div>
+                                <button class="service-gallery-button" type="button" data-service-next aria-label="Next construction project photo">&#8594;</button>
+                            </div>
+                        </div>
                         <a
-                            href="#contact"
+                            href="contact.html?service=General%20Construction#contact"
                             class="service-link"
                             data-service="General Construction"
                         >
                             Discuss Your Project →
                         </a>
-
                     </article>
 
+                    <article class="service-card service-card-featured">
+                        <div class="service-icon" aria-hidden="true">❄️</div>
+                        <h2>Air Conditioning &amp; Maintenance</h2>
+                        <p>
+                            Air conditioning installation, servicing and
+                            maintenance for homes and businesses.
+                        </p>
+                        <div class="service-gallery-carousel" data-service-gallery aria-label="Air conditioning and maintenance project photos">
+                            <div class="service-gallery-track">
+                                <figure class="service-gallery-slide is-active" aria-hidden="false"><img src="images/aircon-maintance.jpg" alt="Air conditioning maintenance project" loading="lazy"></figure>
+                                <figure class="service-gallery-slide" aria-hidden="true"><img src="images/work-3.jpg" alt="Technicians maintaining mechanical equipment" loading="lazy"></figure>
+                            </div>
+                            <div class="service-gallery-controls">
+                                <button class="service-gallery-button" type="button" data-service-prev aria-label="Previous maintenance project photo">&#8592;</button>
+                                <div class="service-gallery-dots">
+                                    <button class="service-gallery-dot is-active" type="button" data-service-dot="0" aria-label="Show maintenance project 1" aria-current="true"></button>
+                                    <button class="service-gallery-dot" type="button" data-service-dot="1" aria-label="Show maintenance project 2" aria-current="false"></button>
+                                </div>
+                                <button class="service-gallery-button" type="button" data-service-next aria-label="Next maintenance project photo">&#8594;</button>
+                            </div>
+                        </div>
+                        <a
+                            href="contact.html?service=Air%20Conditioning%20%26%20Maintenance#contact"
+                            class="service-link"
+                            data-service="Air Conditioning &amp; Maintenance"
+                        >
+                            Request Maintenance Services →
+                        </a>
+                    </article>
                 </div>
             </div>
         </section>
-        <script src="js/script.js"></script>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>
+                &copy; <span id="current-year"></span>
+                Mapulane Construction. All rights reserved.
+            </p>
+            <p>
+                installations you can depend on.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

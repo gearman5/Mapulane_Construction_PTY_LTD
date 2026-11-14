@@ -35,6 +35,44 @@ if (currentYear) {
 
 
 // =========================
+// THEME SWITCHER
+// =========================
+
+const themeToggle = document.querySelector(".theme-toggle");
+
+const applyTheme = (theme) => {
+    const resolvedTheme = theme === "dark" ? "dark" : "light";
+    document.body.setAttribute("data-theme", resolvedTheme);
+
+    if (themeToggle) {
+        const isDark = resolvedTheme === "dark";
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        themeToggle.setAttribute("aria-pressed", String(isDark));
+    }
+};
+
+const getPreferredTheme = () => {
+    const storedTheme = localStorage.getItem("mapulane-theme");
+    if (storedTheme === "dark" || storedTheme === "light") {
+        return storedTheme;
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
+if (themeToggle) {
+    applyTheme(getPreferredTheme());
+
+    themeToggle.addEventListener("click", () => {
+        const nextTheme = document.body.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        localStorage.setItem("mapulane-theme", nextTheme);
+        applyTheme(nextTheme);
+    });
+}
+
+
+// =========================
 // SERVICE SELECTION
 // =========================
 
@@ -42,6 +80,16 @@ const serviceLinks = document.querySelectorAll(".service-link");
 const serviceSelect = document.getElementById("service");
 
 if (serviceSelect) {
+    const requestedService = new URLSearchParams(window.location.search)
+        .get("service");
+    const matchingOption = Array.from(serviceSelect.options).find(
+        (option) => option.value === requestedService
+    );
+
+    if (matchingOption) {
+        serviceSelect.value = matchingOption.value;
+    }
+
     serviceLinks.forEach((link) => {
         link.addEventListener("click", () => {
             const selectedService = link.dataset.service;
@@ -50,6 +98,106 @@ if (serviceSelect) {
         });
     });
 }
+
+
+// =========================
+// SERVICE CARD IMAGE CAROUSELS
+// =========================
+
+const serviceGalleries = document.querySelectorAll("[data-service-gallery]");
+
+serviceGalleries.forEach((gallery) => {
+    const slides = Array.from(gallery.querySelectorAll(".service-gallery-slide"));
+    const prevButton = gallery.querySelector("[data-service-prev]");
+    const nextButton = gallery.querySelector("[data-service-next]");
+    const dots = Array.from(gallery.querySelectorAll("[data-service-dot]"));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (slides.length <= 1) {
+        prevButton?.remove();
+        nextButton?.remove();
+        dots.forEach((dot) => dot.remove());
+        return;
+    }
+
+    let activeIndex = 0;
+    let autoplayTimer;
+
+    const showSlide = (index) => {
+        activeIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+            const isActive = slideIndex === activeIndex;
+            slide.classList.toggle("is-active", isActive);
+            slide.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        dots.forEach((dot, dotIndex) => {
+            const isCurrent = dotIndex === activeIndex;
+            dot.classList.toggle("is-active", isCurrent);
+            dot.setAttribute("aria-current", String(isCurrent));
+        });
+    };
+
+    const stopAutoplay = () => {
+        window.clearInterval(autoplayTimer);
+    };
+
+    const startAutoplay = () => {
+        stopAutoplay();
+
+        if (reducedMotion.matches || document.hidden) {
+            return;
+        }
+
+        autoplayTimer = window.setInterval(() => {
+            showSlide(activeIndex + 1);
+        }, 5000);
+    };
+
+    prevButton?.addEventListener("click", () => {
+        showSlide(activeIndex - 1);
+        startAutoplay();
+    });
+
+    nextButton?.addEventListener("click", () => {
+        showSlide(activeIndex + 1);
+        startAutoplay();
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            startAutoplay();
+        });
+    });
+
+    gallery.addEventListener("mouseenter", stopAutoplay);
+    gallery.addEventListener("mouseleave", startAutoplay);
+    gallery.addEventListener("focusin", stopAutoplay);
+    gallery.addEventListener("focusout", () => {
+        startAutoplay();
+    });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    reducedMotion.addEventListener("change", () => {
+        if (reducedMotion.matches) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+
+    showSlide(0);
+    startAutoplay();
+});
 
 
 // =========================
@@ -178,8 +326,9 @@ if (quoteForm && formFeedback) {
             return;
         }
 
-        const whatsappNumber = quoteForm.dataset.whatsappNumber;
-        if (!/^\d{8,15}$/.test(whatsappNumber || "")) {
+        const whatsappNumber = (quoteForm.dataset.whatsappNumber || "")
+            .replace(/[^\d]/g, "");
+        if (!/^\d{8,15}$/.test(whatsappNumber)) {
             formFeedback.textContent =
                 "WhatsApp quote delivery is not configured. Please contact us by phone.";
             formFeedback.classList.add("error");
@@ -207,10 +356,14 @@ if (quoteForm && formFeedback) {
 
         formFeedback.append(
             document.createTextNode(
-                "Your quote is ready. WhatsApp will not send it until you review the message and tap Send. "
+                "Opening WhatsApp now. Review the message and tap Send; otherwise, use the link below. "
             ),
             whatsappLink
         );
         formFeedback.classList.add("success");
+
+        // This is a direct user-initiated action, so most browsers allow it.
+        // WhatsApp may still require the user to review and tap Send.
+        whatsappLink.click();
     });
 }
